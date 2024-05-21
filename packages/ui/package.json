@@ -1,0 +1,24 @@
+{
+  "name": "@pkges/libui",
+  "version": "1.0.0",
+  "description": "ui lib",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "5.4.5"
+  },
+  "peerDependencies": {
+    "@types/react": ">= 18.3",
+    "@radix-ui/themes": "^3.0.5"
+  }
+}

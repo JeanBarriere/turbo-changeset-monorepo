@@ -1,0 +1,16 @@
+{
+  "name": "turbo-changeset-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "release": "pnpm turbo build && pnpm changeset publish"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@changesets/cli": "2.27.5",
+    "turbo": "1.13.3"
+  }
+}
