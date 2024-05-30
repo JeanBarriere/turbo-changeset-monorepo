@@ -13,8 +13,6 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
-    environment:
-      name: ${{ github.ref_name }}
 
     steps:
       - uses: actions/checkout@v4
