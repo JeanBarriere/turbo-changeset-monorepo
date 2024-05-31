@@ -65,7 +65,10 @@ git checkout origin/main -- ${ROOT_DIR}/.github/workflows
 
 # commit the changes
 git add ${ROOT_DIR}/.github/workflows
-git commit -m "chore: checkout .github/workflows files from main branch"
+# if there are changes, let's commit before push
+if [ -n "$(git status --porcelain)" ]; then
+  git commit -m "chore: checkout .github/workflows files from main branch"
+fi
 
 # push the new branch to the remote
 git push origin release/${CURRENT_DIR}/${PKG_VERSION_MAJOR}
