@@ -3,7 +3,8 @@
 # get the current package version
 CURRENT_DIR=${PWD##*/} # get the current directory name
 PKG_NAME=$(cat package.json | jq -r '.name') # extract the package name
-PKG_VERSION=$(cat package.json | jq -r '.version') # extract the package version
+# get the tag from the last stable release in pre.json
+PKG_VERSION=$(cat ../../.changeset/pre.json | jq --arg PKG_NAME "$PKG_NAME" -r '.initialVersions | to_entries | map(select(.key == $PKG_NAME) | .value)[]')
 PKG_TAG=$(echo "$PKG_NAME@$PKG_VERSION") # generate the git tag of that package last stable release
 PKG_VERSION_MAJOR=$(echo $PKG_VERSION | cut -d '.' -f 1) # extract the current major version
 
@@ -22,10 +23,11 @@ if git rev-parse --verify $PKG_TAG > /dev/null 2>&1; then
   fi
 else
   echo "Tag $PKG_TAG does not exist"
-  # get the tag from the last stable release in pre.json
-  PKG_VERSION=$(cat ../../.changeset/pre.json | jq --arg PKG_NAME "$PKG_NAME" -r '.initialVersions | to_entries | map(select(.key == $PKG_NAME) | .value)[]')
+  # get the tag from package.json version
+  PKG_VERSION=$(cat package.json | jq -r '.version') # extract the package version
   PKG_TAG=$(echo "$PKG_NAME@$PKG_VERSION") # generate the git tag of that package last stable release
   PKG_VERSION_MAJOR=$(echo $PKG_VERSION | cut -d '.' -f 1) # extract the current major version
+
 
   if git rev-parse --verify $PKG_TAG > /dev/null 2>&1; then
     echo "Tag $PKG_TAG found"
@@ -43,8 +45,6 @@ else
     echo "Breaking change found in commit $COMMIT_SHA since $PKG_TAG"
   fi
 fi
-
-
 
 # check if branch exists
 if git rev-parse --verify release/${CURRENT_DIR}/${PKG_VERSION_MAJOR} > /dev/null 2>&1; then
