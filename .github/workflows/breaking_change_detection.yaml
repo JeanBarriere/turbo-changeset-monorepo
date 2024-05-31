@@ -1,0 +1,35 @@
+name: Breaking change detection
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/**"
+      - "apps/**"
+      - "runner/**"
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  breaking_change_detection:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        package: [packages/ui, packages/utils, apps/docs, apps/web, runner]
+    name: ${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Check for breaking changes & create stable branch
+        working-directory: ${{ matrix.package }}
+        run: sh ${{ github.workspace }}/runner/create_stable_branch.sh
