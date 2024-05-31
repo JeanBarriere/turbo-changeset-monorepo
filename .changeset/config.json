@@ -1,9 +1,12 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.1/schema.json",
-  "changelog": ["@changesets/changelog-github", {
-    "repo": "JeanBarriere/turbo-changeset-monorepo",
-    "changelogFilename": "CHANGELOG.md"
-  }],
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "JeanBarriere/turbo-changeset-monorepo",
+      "changelogFilename": "CHANGELOG.md"
+    }
+  ],
   "commit": false,
   "fixed": [],
   "linked": [],

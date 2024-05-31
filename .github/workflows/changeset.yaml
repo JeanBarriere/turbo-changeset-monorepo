@@ -24,7 +24,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   stable_release:
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call'
-    name: ${{ github.event.inputs.package && format('Create stable release for {0}', github.event.inputs.package) || 'No stable release to create' }}
+    name: "Stable release"
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -50,11 +50,11 @@ jobs:
       - run: pnpm install
         shell: bash
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create Release Pull Request or Publish to npm for ${{ github.event.inputs.package }}
         id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm changeset:version
+          version: pnpm changeset:version ${{ github.event.inputs.package }}
           publish: pnpm changeset:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
