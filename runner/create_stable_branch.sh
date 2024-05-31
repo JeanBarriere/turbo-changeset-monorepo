@@ -1,10 +1,12 @@
 #!/bin/sh
 
+SCRIPT_DIR=${0%/*};
+ROOT_DIR=${SCRIPT_DIR%/*}
 # get the current package version
 CURRENT_DIR=${PWD##*/} # get the current directory name
 PKG_NAME=$(cat package.json | jq -r '.name') # extract the package name
 # get the tag from the last stable release in pre.json
-PKG_VERSION=$(cat ../../.changeset/pre.json | jq --arg PKG_NAME "$PKG_NAME" -r '.initialVersions | to_entries | map(select(.key == $PKG_NAME) | .value)[]')
+PKG_VERSION=$(cat ${ROOT_DIR}/.changeset/pre.json | jq --arg PKG_NAME "$PKG_NAME" -r '.initialVersions | to_entries | map(select(.key == $PKG_NAME) | .value)[]')
 PKG_TAG=$(echo "$PKG_NAME@$PKG_VERSION") # generate the git tag of that package last stable release
 PKG_VERSION_MAJOR=$(echo $PKG_VERSION | cut -d '.' -f 1) # extract the current major version
 
@@ -58,5 +60,12 @@ git checkout $COMMIT_SHA^1
 # create a new branch for the stable release, detached from the breaking change commit
 git switch --create release/${CURRENT_DIR}/${PKG_VERSION_MAJOR}
 
+# sync files from .github to match the main branch
+git checkout origin/main -- ${ROOT_DIR}/.github/workflows
+
+# commit the changes
+git add ${ROOT_DIR}/.github/workflows
+git commit -m "chore: checkout .github/workflows files from main branch"
+
 # push the new branch to the remote
-git push -u origin release/${CURRENT_DIR}/${PKG_VERSION_MAJOR}
+git push origin release/${CURRENT_DIR}/${PKG_VERSION_MAJOR}
