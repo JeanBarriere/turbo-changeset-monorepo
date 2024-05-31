@@ -2,9 +2,8 @@
 
 # get the current package version
 CURRENT_DIR=${PWD##*/} # get the current directory name
-PKG=$(pnpm pkg get name version --json) # get the package name and version
-PKG_NAME=$(echo $PKG | jq -r '.name') # extract the package name
-PKG_VERSION=$(echo $PKG | jq -r '.version') # extract the package version
+PKG_NAME=$(cat package.json | jq -r '.name') # extract the package name
+PKG_VERSION=$(cat package.json | jq -r '.version') # extract the package version
 PKG_TAG=$(echo "$PKG_NAME@$PKG_VERSION") # generate the git tag of that package last stable release
 PKG_VERSION_MAJOR=$(echo $PKG_VERSION | cut -d '.' -f 1) # extract the current major version
 
