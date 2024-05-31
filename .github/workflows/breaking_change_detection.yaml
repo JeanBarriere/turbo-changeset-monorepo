@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         package: [packages/ui, packages/utils, apps/docs, apps/web, runner]
-    name: "Breaking change detection for ${{ matrix.package }}"
+    name: ${{ matrix.package }}
     steps:
       - uses: actions/checkout@v4
         with:

@@ -24,7 +24,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   stable_release:
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call'
-    name: "Stable release"
+    name: Stable
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -62,7 +62,7 @@ jobs:
 
   auto_release:
     if: github.event_name == 'push'
-    name: "Automatically release packages and apps"
+    name: Unstable
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
