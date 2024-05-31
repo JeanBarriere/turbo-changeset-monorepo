@@ -49,7 +49,7 @@ else
 fi
 
 # check if branch exists
-if git rev-parse --verify release/${CURRENT_DIR}/${PKG_VERSION_MAJOR} > /dev/null 2>&1; then
+if git rev-parse --verify origin/release/${CURRENT_DIR}/${PKG_VERSION_MAJOR} > /dev/null 2>&1; then
   echo "Branch release/${CURRENT_DIR}/${PKG_VERSION_MAJOR} already exists"
   exit 0
 fi
