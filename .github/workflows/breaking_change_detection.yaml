@@ -25,7 +25,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check for breaking changes
+      - name: Check for breaking changes & create stable branch
         id: breaking_changes
         working-directory: ${{ matrix.package }}
         run: sh ${{ github.workspace }}/runner/create_stable_branch.sh

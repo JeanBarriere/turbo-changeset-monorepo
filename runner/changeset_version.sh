@@ -37,5 +37,7 @@ fi
 # update versions
 pnpm changeset version
 
-# restore file
-mv .changeset/config.json.bak .changeset/config.json
+# if we are in stable mode, restore the old config
+if [ "$1" != "unstable" ]; then
+  mv .changeset/config.json.bak .changeset/config.json
+fi

@@ -29,7 +29,7 @@ fi
 git checkout $COMMIT_SHA^1
 
 # create a new branch for the stable release, detached from the breaking change commit
-git switch -c release/${CURRENT_DIR}/${PKG_VERSION_MAJOR}
+git switch --create release/${CURRENT_DIR}/${PKG_VERSION_MAJOR}
 
 # push the new branch to the remote
-git push origin release/${CURRENT_DIR}/${PKG_VERSION_MAJOR}
+git push -u origin release/${CURRENT_DIR}/${PKG_VERSION_MAJOR}
