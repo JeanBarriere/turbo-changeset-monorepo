@@ -1,0 +1,32 @@
+name: Breaking change detection
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/**"
+      - "apps/**"
+      - "runner/**"
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  breaking_change_detection:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        package: [packages/ui, packages/utils, apps/docs, apps/web, runner]
+    name: "Breaking change detection for ${{ matrix.package }}"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for breaking changes
+        id: breaking_changes
+        working-directory: ${{ matrix.package }}
+        run: sh ${{ github.workspace }}/runner/create_stable_branch.sh
+        shell: bash
