@@ -1,5 +1,12 @@
 # @pkges/web
 
+## 0.1.2-beta.1
+
+### Patch Changes
+
+- Updated dependencies [[`019c915`](https://github.com/JeanBarriere/turbo-changeset-monorepo/commit/019c9155e498aa89b43f428c9afcb9280407f51b)]:
+  - @pkges/libui@2.0.1-beta.0
+
 ## 0.1.2-next-major.0
 
 ### Patch Changes
