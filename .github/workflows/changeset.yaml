@@ -27,7 +27,7 @@ env:
 jobs:
   stable_release:
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call'
-    name: Stable
+    name: Create stable release PR
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -40,7 +40,6 @@ jobs:
 
       - name: Install pnpm
         run: npm install -g pnpm@9.1.3
-        shell: bash
 
       - name: Setup Node.js LTS
         uses: actions/setup-node@v4
@@ -51,32 +50,28 @@ jobs:
           always-auth: true
 
       - run: pnpm install
-        shell: bash
 
       - name: get package name
         run: echo "name=$(cat package.json | jq -r '.name')" >> "$GITHUB_OUTPUT"
         working-directory: ${{ github.event.inputs.package }}
         id: pkg
-        shell: bash
 
       - name: exit pre state
         run: pnpm changeset pre exit
 
-      - name: Create Release Pull Request or Publish to npm for ${{ github.event.inputs.package }}
+      - name: Create Release Pull Request for ${{ github.event.inputs.package }}
         id: changesets
         uses: changesets/action@v1
         with:
           version: pnpm changeset:version ${{ github.event.inputs.package }}
-          publish: pnpm changeset:release
           title: "${{ steps.pkg.outputs.name }}: release stable version"
           commit: "chore(${{ steps.pkg.outputs.name }}): stable release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   auto_release:
     if: github.event_name == 'push'
-    name: Unstable
+    name: Publish or Create pre-release PR
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -89,7 +84,6 @@ jobs:
 
       - name: Install pnpm
         run: npm install -g pnpm@9.1.3
-        shell: bash
 
       - name: Setup Node.js LTS
         uses: actions/setup-node@v4
@@ -100,7 +94,6 @@ jobs:
           always-auth: true
 
       - run: pnpm install
-        shell: bash
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
