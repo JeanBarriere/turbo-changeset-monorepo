@@ -51,14 +51,20 @@ jobs:
       - run: pnpm install
         shell: bash
 
-      - run: pnpm changeset:version ${{ github.event.inputs.package }}
+      - name: get package name
+        run: echo "name=$(cat package.json | jq -r '.name')" >> "$GITHUB_OUTPUT"
+        working-directory: ${{ github.event.inputs.package }}
+        id: pkg
         shell: bash
 
       - name: Create Release Pull Request or Publish to npm for ${{ github.event.inputs.package }}
         id: changesets
         uses: changesets/action@v1
         with:
+          version: pnpm changeset:version ${{ github.event.inputs.package }}
           publish: pnpm changeset:release
+          title: "${{ steps.pkg.outputs.name }}: release stable version"
+          commit: "chore(${{ steps.pkg.outputs.name }}): stable release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -70,6 +76,7 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
+      statuses: read
 
     steps:
       - uses: actions/checkout@v4
