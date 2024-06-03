@@ -11,5 +11,8 @@ export const UI = {
      * Button for UI
      */
     Button,
+    /**
+     * Avatar for UI
+     */
     Avatar,
 }
