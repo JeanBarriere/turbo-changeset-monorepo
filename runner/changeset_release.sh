@@ -1,6 +1,8 @@
 #!/bin/sh
 
 GIT_BRANCH=$(git branch --show-current)
+# get the version from the branch (release/{package}/{version})
+VERSION=$(echo $GIT_BRANCH | cut -d'/' -f 3)
 
 # build apps & packages
 pnpm turbo build
@@ -9,26 +11,18 @@ pnpm turbo build
 if [ "$GIT_BRANCH" = "main" ]; then
   echo "Publishing the main branch"
   pnpm changeset publish
-else
-  echo "Publishing the $GIT_BRANCH branch"
-  # get the version from the branch (release/{package}/{version})
-  VERSION=$(echo $GIT_BRANCH | cut -d'/' -f 3)
-  # if there is a version, run release
-  if [ -n "$VERSION" ]; then
-    echo "Publishing under the version $VERSION tag"
-    # get mode and tag from changeset pre.json
-    CHANGESET_MODE=$(cat .changeset/pre.json | jq -r '.mode')
-    CHANGESET_TAG=$(cat .changeset/pre.json | jq -r '.tag')
-    # if the mode is "pre" then the tag is the `tag` value, publish
-    if [ "$CHANGESET_MODE" = "pre" ]; then
-      echo "Publishing under the $CHANGESET_TAG tag"
-      pnpm changeset publish --tag $VERSION-$CHANGESET_TAG
-    # otherwise publish under the latest tag
-    else
-      echo "Publishing under the latest tag"
-      pnpm changeset publish --tag $VERSION-latest
-    fi
+# if there is a version, run release
+elif [[ "$VERSION" =~ ^[0-9]+$ ]]; then
+  echo "Publishing $GIT_BRANCH branch under the version $VERSION tag"
+  # get mode and tag from changeset pre.json
+  CHANGESET_MODE=$(cat .changeset/pre.json | jq -r '.mode')
+  # if the mode is not "pre" then publish under custom latest tag
+  if [ "$CHANGESET_MODE" != "pre" ]; then
+    echo "Publishing under the latest-v$VERSION tag"
+    pnpm changeset publish --tag latest-v$VERSION
   else
-    echo "cannot publish: branch $GIT_BRANCH is not a release branch"
+    pnpm changeset publish
   fi
+else
+  echo "cannot publish: branch $GIT_BRANCH is not a release branch"
 fi

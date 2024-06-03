@@ -12,8 +12,18 @@ if [ "$1" = "unstable" ]; then
     echo "Major changeset detected, entering pre next-major mode"
     pnpm changeset pre enter next-major
   else
-    echo "No major changeset detected, entering pre beta mode"
-    pnpm changeset pre enter beta
+    echo "No major changeset detected, checking branch for beta tag"
+    GIT_BRANCH=$(git branch --show-current)
+    # get the version from the branch (release/{package}/{version})
+    VERSION=$(echo $GIT_BRANCH | cut -d'/' -f 3)
+    # if the branch is not main and there is a version, enter pre beta mode
+    if [ "$GIT_BRANCH" != "main" ] && [[ "$VERSION" =~ ^[0-9]+$ ]]; then
+      echo "Entering pre beta-v$VERSION mode"
+      pnpm changeset pre enter beta-v$VERSION
+    else
+      echo "No version detected, entering pre beta mode"
+      pnpm changeset pre enter beta
+    fi
   fi
 else
   echo "Stable release mode"
