@@ -1,5 +1,11 @@
 # @pkges/libui
 
+## 1.0.3-beta.1
+
+### Patch Changes
+
+- [#19](https://github.com/JeanBarriere/turbo-changeset-monorepo/pull/19) [`ab8164f`](https://github.com/JeanBarriere/turbo-changeset-monorepo/commit/ab8164f94c91c7d128b406fb8abcfa524648cb6e) Thanks [@JeanBarriere](https://github.com/JeanBarriere)! - chore(@pkges/ui): add comment for Avatar component
+
 ## 1.0.3-beta.0
 
 ### Patch Changes
