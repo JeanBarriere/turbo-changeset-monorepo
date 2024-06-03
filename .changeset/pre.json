@@ -1,0 +1,16 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@pkges/docs": "0.0.1",
+    "@pkges/web": "0.1.2-beta.2",
+    "@pkges/libui": "2.0.1",
+    "@pkges/utils": "1.0.0",
+    "@pkges/runner": "1.0.1"
+  },
+  "changesets": [
+    "little-moose-live",
+    "modern-chefs-switch",
+    "shy-pugs-peel"
+  ]
+}
