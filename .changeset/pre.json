@@ -6,10 +6,11 @@
     "@pkges/web": "0.1.2-beta.1",
     "@pkges/libui": "2.0.1-beta.0",
     "@pkges/utils": "1.0.0",
-    "@pkges/runner": "1.0.0"
+    "@pkges/runner": "1.0.1-beta.0"
   },
   "changesets": [
     "modern-chefs-switch",
-    "rare-trains-develop"
+    "rare-trains-develop",
+    "shy-pugs-peel"
   ]
 }
