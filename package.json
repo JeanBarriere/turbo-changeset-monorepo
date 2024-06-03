@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "release": "pnpm turbo build && pnpm changeset publish"
+    "changeset:version": "sh runner/changeset_version.sh",
+    "changeset:release": "pnpm turbo build && pnpm changeset publish"
   },
   "keywords": [],
   "author": "",
