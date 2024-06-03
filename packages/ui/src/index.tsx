@@ -7,6 +7,9 @@ import '@radix-ui/themes/styles.css';
  */
 export const UI = {
     Theme,
+    /**
+     * Button for UI
+     */
     Button,
     Avatar,
 }
