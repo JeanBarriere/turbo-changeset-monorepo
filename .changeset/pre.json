@@ -6,11 +6,12 @@
     "@pkges/web": "0.1.2-beta.1",
     "@pkges/libui": "2.0.1-beta.0",
     "@pkges/utils": "1.0.0",
-    "@pkges/runner": "1.0.1-beta.1"
+    "@pkges/runner": "1.0.1-beta.2"
   },
   "changesets": [
     "little-moose-live",
     "modern-chefs-switch",
+    "olive-shoes-relax",
     "rare-trains-develop",
     "shy-pugs-peel"
   ]
