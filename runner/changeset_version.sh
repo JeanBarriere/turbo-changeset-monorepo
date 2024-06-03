@@ -15,7 +15,7 @@ if [ "$1" = "unstable" ]; then
     echo "No major changeset detected, checking branch for beta tag"
     GIT_BRANCH=$(git branch --show-current)
     # get the version from the branch (release/{package}/{version})
-    VERSION=$(echo $GIT_BRANCH | grep -ioe "\d*$")
+    VERSION=$(echo $GIT_BRANCH | grep -Eow "[0-9]*$")
     # if the branch is not main and there is a version, enter pre beta mode
     if [ "$GIT_BRANCH" != "main" ] && [ -n "$VERSION" ]; then
       echo "Entering pre beta-v$VERSION mode"
