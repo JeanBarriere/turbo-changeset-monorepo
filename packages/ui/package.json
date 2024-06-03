@@ -1,6 +1,6 @@
 {
   "name": "@pkges/libui",
-  "version": "1.0.3-beta.0",
+  "version": "1.0.3-beta-v1.1",
   "description": "ui lib",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
