@@ -1,5 +1,11 @@
 # @pkges/libui
 
+## 1.0.3-beta.0
+
+### Patch Changes
+
+- [#13](https://github.com/JeanBarriere/turbo-changeset-monorepo/pull/13) [`8712b1f`](https://github.com/JeanBarriere/turbo-changeset-monorepo/commit/8712b1fa82d151324ce19af71d3440120961c336) Thanks [@JeanBarriere](https://github.com/JeanBarriere)! - Chore/UI update comments
+
 ## 1.0.2
 
 ### Patch Changes

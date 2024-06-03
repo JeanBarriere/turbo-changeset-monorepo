@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@pkges/docs": "0.0.1",
+    "@pkges/web": "0.1.2-beta.0",
+    "@pkges/libui": "1.0.2",
+    "@pkges/utils": "1.0.0",
+    "@pkges/runner": "1.0.1-beta.0"
+  },
+  "changesets": [
+    "chilly-starfishes-sneeze"
+  ]
+}
