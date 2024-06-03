@@ -1,5 +1,11 @@
 # @pkges/libui
 
+## 2.0.1-beta.0
+
+### Patch Changes
+
+- [#6](https://github.com/JeanBarriere/turbo-changeset-monorepo/pull/6) [`019c915`](https://github.com/JeanBarriere/turbo-changeset-monorepo/commit/019c9155e498aa89b43f428c9afcb9280407f51b) Thanks [@JeanBarriere](https://github.com/JeanBarriere)! - chore(@pkges/ui): add comments
+
 ## 2.0.0
 
 ### Major Changes

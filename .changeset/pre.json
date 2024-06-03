@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@pkges/docs": "0.0.1",
+    "@pkges/web": "0.1.2-next-major.0",
+    "@pkges/libui": "2.0.0",
+    "@pkges/utils": "1.0.0",
+    "@pkges/runner": "1.0.0"
+  },
+  "changesets": [
+    "rare-trains-develop"
+  ]
+}
