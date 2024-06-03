@@ -19,7 +19,9 @@ jobs:
     strategy:
       matrix:
         package: [packages/ui, packages/utils, apps/docs, apps/web, runner]
+
     name: ${{ matrix.package }}
+
     steps:
       - uses: actions/checkout@v4
         with:
