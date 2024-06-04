@@ -96,6 +96,15 @@ jobs:
 
       - run: pnpm install
 
+      - name: get changeset pre mode
+        id: changeset-status
+        # if changeset is not in pre mode, try to publish
+        run: eho "mode=$(cat .changeset/pre.json | jq -r '.mode')" >> "$GITHUB_OUTPUT"
+
+      - name: release for stable
+        if: steps.changeset-status.outputs.mode == 'exit'
+        run: pnpm changeset:release
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
