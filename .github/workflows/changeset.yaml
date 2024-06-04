@@ -104,6 +104,8 @@ jobs:
       - name: release for stable
         if: steps.changeset-status.outputs.mode == 'exit'
         run: pnpm changeset:release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
