@@ -56,6 +56,7 @@ if [ "$1" != "unstable" ]; then
   git checkout -- runner/
   git checkout -- .changeset/pre.json
   pnpm changeset version # (will update pre.json) with files removed
+  pnpm changeset pre exit # exit pre mode, will trigger release on merge
   git restore --staged $PACKAGE_DIR;
   mv .changeset/config.json.bak .changeset/config.json
 fi
