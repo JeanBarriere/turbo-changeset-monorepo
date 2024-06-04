@@ -49,5 +49,13 @@ pnpm changeset version
 
 # if we are in stable mode, restore the old config
 if [ "$1" != "unstable" ]; then
+  PACKAGE_DIR=$1;
+  git add $PACKAGE_DIR;
+  git checkout -- packages/
+  git checkout -- apps/
+  git checkout -- runner/
+  git checkout -- .changeset/pre.json
+  pnpm changeset version # (will update pre.json) with files removed
+  git restore --staged $PACKAGE_DIR;
   mv .changeset/config.json.bak .changeset/config.json
 fi
