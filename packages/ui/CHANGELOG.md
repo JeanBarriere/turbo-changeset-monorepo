@@ -1,5 +1,11 @@
 # @pkges/libui
 
+## 2.1.0
+
+### Minor Changes
+
+- [#32](https://github.com/JeanBarriere/turbo-changeset-monorepo/pull/32) [`85c40ee`](https://github.com/JeanBarriere/turbo-changeset-monorepo/commit/85c40ee70fa23b2edd7c8e3ccc8e203d13ff9fe6) Thanks [@JeanBarriere](https://github.com/JeanBarriere)! - feat(@pkges/libui): add alert dialog component
+
 ## 2.1.0-beta.0
 
 ### Minor Changes
