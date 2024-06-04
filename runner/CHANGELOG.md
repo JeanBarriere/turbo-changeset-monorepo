@@ -1,5 +1,11 @@
 # @pkges/runner
 
+## 1.0.2-beta.1
+
+### Patch Changes
+
+- [#27](https://github.com/JeanBarriere/turbo-changeset-monorepo/pull/27) [`647299f`](https://github.com/JeanBarriere/turbo-changeset-monorepo/commit/647299f537b706fea504afa7c8aa15646ef61c1f) Thanks [@JeanBarriere](https://github.com/JeanBarriere)! - feat(runner): stable release to only change stable pkg
+
 ## 1.0.2-beta.0
 
 ### Patch Changes
