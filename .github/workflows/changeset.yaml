@@ -103,7 +103,7 @@ jobs:
 
       - name: release for stable
         if: steps.changeset-status.outputs.mode == 'exit'
-        run: pnpm changeset:release
+        run: pnpm changeset:release stable
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -111,7 +111,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm changeset:version unstable
+          version: pnpm changeset:version
           publish: pnpm changeset:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

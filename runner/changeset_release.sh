@@ -9,8 +9,14 @@ pnpm turbo build
 
 # if we are in main, run release
 if [ "$GIT_BRANCH" = "main" ]; then
+  if [ "$1" = "stable" ]; then
+    mv .changeset/pre.json .changeset/pre.json.bak
+  fi
   echo "Publishing the main branch"
   pnpm changeset publish
+  if [ "$1" = "stable" ]; then
+    mv .changeset/pre.json.bak .changeset/pre.json
+  fi
 # if there is a version, run release
 elif [ -n "$VERSION" ]; then
   echo "Publishing $GIT_BRANCH branch under the version $VERSION tag"
