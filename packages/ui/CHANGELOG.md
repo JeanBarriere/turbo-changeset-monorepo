@@ -1,5 +1,11 @@
 # @pkges/libui
 
+## 2.0.2
+
+### Patch Changes
+
+- [#28](https://github.com/JeanBarriere/turbo-changeset-monorepo/pull/28) [`1931475`](https://github.com/JeanBarriere/turbo-changeset-monorepo/commit/1931475298ab5c849ff5b8f372575a933679cf3d) Thanks [@JeanBarriere](https://github.com/JeanBarriere)! - feat(@pkges/libui): add blockquote component
+
 ## 2.0.2-beta.0
 
 ### Patch Changes
