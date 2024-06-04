@@ -1,4 +1,4 @@
-import { Theme, Button, Badge, Blockquote } from '@radix-ui/themes';
+import { Theme, Button, Badge, Blockquote, AlertDialog } from '@radix-ui/themes';
 
 import '@radix-ui/themes/styles.css';
 
@@ -7,6 +7,7 @@ import '@radix-ui/themes/styles.css';
  */
 export const UI = {
     Theme,
+    AlertDialog,
     Button,
     Badge,
     Blockquote,
